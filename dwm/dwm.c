@@ -92,7 +92,7 @@ struct Client {
 	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
 	int bw, oldbw;
 	unsigned int tags;
-	int isfixed, iscentered, isfloating, noborder, isurgent, neverfocus, oldstate, isfullscreen, resizehints;
+	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, resizehints;
 	Client *next;
 	Client *snext;
 	Monitor *mon;
@@ -143,9 +143,9 @@ typedef struct {
 	unsigned int tags;
 	int iscentered;
 	int isfloating;
-	int noborder;
 	int monitor;
 	int resizehints;
+	int bw;
 } Rule;
 
 /* function declarations */
@@ -311,7 +311,7 @@ applyrules(Client *c)
 	/* rule matching */
 	c->iscentered = 0;
 	c->isfloating = 0;
-	c->noborder = 0;
+	c->bw = borderpx;
 	c->tags = 0;
 	XGetClassHint(dpy, c->win, &ch);
 	class    = ch.res_class ? ch.res_class : broken;
@@ -325,7 +325,8 @@ applyrules(Client *c)
 		{
 			c->iscentered = r->iscentered;
 			c->isfloating = r->isfloating;
-			c->noborder = r->noborder;
+			if (r->bw != -1)
+				c->bw = r->bw;
 			c->resizehints = r->resizehints;
 			c->tags |= r->tags;
 			for (m = mons; m && m->num != r->monitor; m = m->next);
@@ -1181,6 +1182,7 @@ manage(Window w, XWindowAttributes *wa)
 	c->cfact = 1.0;
 	c->resizehints = resizehints;
 
+	c->bw = borderpx; /* transients skip applyrules() */
 	updatetitle(c);
 	if (XGetTransientForHint(dpy, w, &trans) && (t = wintoclient(trans))) {
 		c->mon = t->mon;
@@ -1196,7 +1198,6 @@ manage(Window w, XWindowAttributes *wa)
 		c->y = c->mon->wy + c->mon->wh - HEIGHT(c);
 	c->x = MAX(c->x, c->mon->wx);
 	c->y = MAX(c->y, c->mon->wy);
-	c->bw = c->noborder ? 0 : borderpx;
 
 	wc.border_width = c->bw;
 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
@@ -2028,7 +2029,7 @@ tile(Monitor *m)
 		return;
 
 	/* a lone borderless client (e.g. a game) fills the whole area */
-	if (smartgaps == n || (n == 1 && nexttiled(m->clients)->noborder)) {
+	if (smartgaps == n || (n == 1 && !nexttiled(m->clients)->bw)) {
 		oe = 0; // outer gaps disabled
 	}
 

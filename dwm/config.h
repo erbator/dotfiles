@@ -38,13 +38,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                  instance                  title  tags mask  iscentered  isfloating  noborder  monitor  resizehints */
-	{ "Gimp",                 NULL,                     NULL,  0,         0,          1,          0,        -1,       0 },
-	{ NULL,                   "pavucontrol",            NULL,  0,         1,          1,          0,        -1,       0 },
-	{ NULL,                   "xdg-desktop-portal-gtk", NULL,  0,         1,          1,          0,        -1,       0 },
-	{ NULL,                   "satty",                  NULL,  0,         1,          1,          0,        -1,       0 },
-	{ NULL,                   "nsxiv",                  NULL,  0,         1,          1,          0,        -1,       0 },
-	{ "mpv",                  NULL,                     NULL,  0,         0,          0,          0,        -1,       1 },
+	/* class    instance                   title  tags mask  iscentered  isfloating  monitor  resizehints  border width */
+	{ "Gimp",  NULL,                      NULL,  0,         0,          1,          -1,      0,           -1 },
+	{ NULL,    "pavucontrol",             NULL,  0,         1,          1,          -1,      0,           -1 },
+	{ NULL,    "xdg-desktop-portal-gtk",  NULL,  0,         1,          1,          -1,      0,           -1 },
+	{ NULL,    "satty",                   NULL,  0,         1,          1,          -1,      0,           -1 },
+	{ NULL,    "nsxiv",                   NULL,  0,         1,          1,          -1,      0,           -1 },
+	{ "mpv",   NULL,                      NULL,  0,         0,          0,          -1,      1,           -1 },
 };
 
 /* layout(s) */
