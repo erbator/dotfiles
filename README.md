@@ -6,7 +6,7 @@ dwm, dmenu, a status bar and the few programs they call.
 dwm/        dwm 6.8 source with config.h
 dmenu/      dmenu source with config.h
 bar/        status bar (barstatus) and media control (mpris)
-scripts/    screenshots, wallpaper cycling
+scripts/    screenshots, wallpaper cycling, webcam
 alacritty/  terminal config
 satty/      screenshot editor config
 xinitrc     session startup
@@ -20,7 +20,7 @@ Xresources  nsxiv colors
 ```sh
 sudo pacman -S --needed git base-devel libx11 libxft libxinerama \
 	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse python \
-	alacritty picom xwallpaper maim xclip satty nsxiv thunar \
+	alacritty picom xwallpaper maim xclip satty nsxiv thunar mpv \
 	ttf-dejavu ttf-gohu-nerd
 ```
 
@@ -66,6 +66,7 @@ Put wallpapers in `~/Documents/Wallpapers`.
 | Super+d | dmenu |
 | Super+e | thunar |
 | Super+w | next wallpaper |
+| Super+F11 | webcam |
 | Super+q | close window |
 | Super+arrows | focus window |
 | Super+Shift+Left/Right | resize master area |
@@ -82,6 +83,6 @@ Scroll or middle-click the volume in the bar to change or mute it; click the son
 
 ## dwm patches
 
-restartsig, preserveonrestart, vanitygaps, center, cfacts, fixborders.
+restartsig, preserveonrestart, vanitygaps, center, cfacts, fixborders, clientresizehints.
 Also: window title in the bar, coloured and clickable status, per-rule `noborder`,
 CJK size and baseline in the bar, layout reset when a window opens.

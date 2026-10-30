@@ -1,0 +1,6 @@
+#!/bin/sh
+# show the last webcam in a window, detached from the terminal; mjpeg keeps 30fps and low delay
+setsid -f mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency \
+	--input-conf=/dev/null --title=webcam \
+	--demuxer-lavf-o=input_format=mjpeg,video_size=1280x720,framerate=30 \
+	"av://v4l2:$(ls /dev/video[02468] | tail -n 1)" >/dev/null 2>&1

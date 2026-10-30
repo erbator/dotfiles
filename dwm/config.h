@@ -115,6 +115,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("$HOME/.local/bin/wallcycle") },
+	{ MODKEY,                       XK_F11,    spawn,          SHCMD("$HOME/.local/bin/webcam") },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_x,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {.i = 1} }, /* restart */
