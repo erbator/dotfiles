@@ -15,15 +15,32 @@ Xresources  nsxiv colors
 
 ## Install (Arch)
 
+1. Install the programs:
+
 ```sh
-sudo pacman -S --needed base-devel libx11 libxft libxinerama \
+sudo pacman -S --needed git base-devel libx11 libxft libxinerama \
 	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse python \
 	alacritty picom xwallpaper maim xclip satty nsxiv thunar \
 	ttf-dejavu ttf-gohu-nerd
+```
 
+2. Download this repo:
+
+```sh
+git clone https://github.com/erbator/dotfiles
+cd dotfiles
+```
+
+3. Build and install dwm and dmenu:
+
+```sh
 sudo make -C dwm install
 sudo make -C dmenu install
+```
 
+4. Copy the configs to where the programs read them:
+
+```sh
 mkdir -p ~/.config/alacritty ~/.config/satty ~/.local/bin \
 	~/Documents/Screen ~/Documents/Wallpapers
 cp alacritty/alacritty.toml ~/.config/alacritty/
@@ -31,7 +48,11 @@ cp satty/config.toml ~/.config/satty/
 cp bar/* scripts/* ~/.local/bin/
 cp xinitrc ~/.xinitrc
 cp Xresources ~/.Xresources
+```
 
+5. Log in on a TTY and start dwm:
+
+```sh
 startx
 ```
 
