@@ -24,19 +24,22 @@ pick() {
     [ -n "$first" ] && echo "$first"
 }
 
+# Print the first string of a Metadata field from busctl's text output,
+# e.g. "xesam:title" s "Song", undoing busctl's \xNN and \" escapes.
+field() {
+    printf '%b' "$(printf '%s' "$meta" |
+        sed -n 's/.*"'"$1"'" '"$2"' "\(\([^"\\]\|\\.\)*\)".*/\1/p')" | sed 's/\\"/"/g'
+}
+
 case $1 in
 now)
     for p in $(players); do
         [ "$(status "$p")" = Playing ] || continue
-        busctl --user --json=short get-property "$p" $path $iface Metadata 2>/dev/null |
-            python3 -Ic 'import json, sys
-m = json.load(sys.stdin)["data"]
-title = m.get("xesam:title", {}).get("data", "")
-artist = ", ".join(m.get("xesam:artist", {}).get("data", []))
-# fullwidth forms （Ａ！） -> ASCII (A!), they never line up with Latin text
-fw = {c: c - 0xfee0 for c in range(0xff01, 0xff5f)}
-fw[0x3000] = 0x20
-print(" - ".join(s for s in (title, artist) if s).translate(fw))'
+        meta=$(busctl --user get-property "$p" $path $iface Metadata 2>/dev/null)
+        title=$(field xesam:title s)
+        artist=$(field xesam:artist 'as [0-9]*')
+        printf '%s\n' "$title${title:+${artist:+ - }}$artist" |
+            LC_ALL=C.UTF-8 sed 'y/！＂＃＄％＆＇（）＊＋，－．／０１２３４５６７８９：；＜＝＞？＠ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ［＼］＾＿｀ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ｛｜｝～　/!"#$%&'\''()*+,-.\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ /'
         exit
     done
     exit ;;

@@ -19,7 +19,7 @@ Xresources  nsxiv colors
 
 ```sh
 sudo pacman -S --needed git base-devel libx11 libxft libxinerama \
-	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse python \
+	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse \
 	alacritty picom xwallpaper maim xclip satty nsxiv thunar mpv \
 	ttf-dejavu ttf-gohu-nerd
 ```
@@ -79,10 +79,9 @@ Put wallpapers in `~/Documents/Wallpapers`.
 | Super+Shift+r | restart dwm |
 | Super+Shift+x | quit dwm |
 
-Scroll or middle-click the volume in the bar to change or mute it; click the song to go back, pause or skip.
-
 ## dwm patches
 
-restartsig, preserveonrestart, vanitygaps, center, cfacts, fixborders, clientresizehints.
-Also: window title in the bar, coloured and clickable status, per-rule `noborder`,
-CJK size and baseline in the bar, layout reset when a window opens.
+restartsig, preserveonrestart, vanitygaps, center, cfacts, fixborders, clientresizehints,
+status2d, bar-height-spacing, borderrule; dmenu: lineheight.
+Also: window title in the bar, CJK size and baseline in the bar, layout reset when a
+window opens, no mouse bindings.
