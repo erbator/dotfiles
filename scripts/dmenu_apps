@@ -1,6 +1,0 @@
-#!/bin/sh
-# dmenu with a fixed list of apps; arguments are passed on to dmenu.
-app=$(printf '%s\n' pavucontrol chromium spotify prismlauncher discord deluge obs | dmenu "$@") || exit
-case $app in
-pavucontrol|chromium|spotify|prismlauncher|discord|deluge|obs) exec "$app" ;;
-esac

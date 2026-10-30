@@ -6,7 +6,7 @@ dwm, dmenu, a status bar and the few programs they call.
 dwm/        dwm 6.8 source with config.h
 dmenu/      dmenu source with config.h
 bar/        status bar (barstatus) and media control (mpris)
-scripts/    dmenu app list, screenshots, wallpaper cycling
+scripts/    screenshots, wallpaper cycling
 alacritty/  terminal config
 satty/      screenshot editor config
 xinitrc     session startup
@@ -56,14 +56,14 @@ cp Xresources ~/.Xresources
 startx
 ```
 
-Put wallpapers in `~/Documents/Wallpapers`. Edit the app list in `~/.local/bin/dmenu_apps`.
+Put wallpapers in `~/Documents/Wallpapers`.
 
 ## Keys
 
 | Key | Action |
 |---|---|
 | Super+Return | alacritty |
-| Super+d | dmenu app list |
+| Super+d | dmenu |
 | Super+e | thunar |
 | Super+w | next wallpaper |
 | Super+q | close window |
