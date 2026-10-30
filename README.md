@@ -9,7 +9,6 @@ bar/        status bar (barstatus) and media control (mpris)
 scripts/    screenshots, wallpaper cycling, webcam
 alacritty/  terminal config
 satty/      screenshot editor config
-patches/    optional dwm patches
 xinitrc     session startup
 Xresources  nsxiv colors
 ```
@@ -79,19 +78,6 @@ Put wallpapers in `~/Documents/Wallpapers`.
 | Super+Print | screenshot region into satty |
 | Super+Shift+r | restart dwm |
 | Super+Shift+x | quit dwm |
-
-## Mouse
-
-dwm has no mouse bindings. To add them (click tags to view or move windows,
-middle-click the status for a terminal, Super+drag to move a window,
-Super+scroll to switch tags):
-
-```sh
-patch -d dwm -p1 < patches/dwm-mouse.diff
-sudo make -C dwm install
-```
-
-Remove them again with `patch -R -d dwm -p1 < patches/dwm-mouse.diff`.
 
 ## dwm patches
 
