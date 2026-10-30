@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# Prints the bar status once a second. The bytes \x01-\x03 pick the colour
-# (label, value, now playing) in the patched dwm bar.
+# Prints the bar status once a second. ^c#rrggbb^ sets the colour (dwm status2d).
 # usage: barstatus          print lines to stdout
 #        barstatus --xroot  set the X root window name (dwm)
 
 export LC_ALL=C
-l=$'\x01' v=$'\x02' p=$'\x03'
+l='^c#999999^' v='^c#eeeeee^' p='^c#7fbbb3^'
 
 status() {
     local mem vol song
@@ -17,6 +16,7 @@ status() {
     fi
 
     song=$(~/.local/bin/mpris now)
+    song=${song//^/} # a ^ would start a status2d code
 
     printf '%s' "$l[Mem: $v$mem%$l] [Vol: $v${vol:-n/a}$l]"
     [ -n "$song" ] && printf '%s' " [$p$song$l]"

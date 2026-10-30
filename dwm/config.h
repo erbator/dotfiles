@@ -20,20 +20,14 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_gray5[]       = "#777777";
-static const char col_gray6[]       = "#999999";
 static const char col_cyan[]        = "#7fbbb3"; /* everforest blue, as in alacritty */
 static const char col_dark[]        = "#272e33"; /* everforest bg, text on blue */
-static const char col_blue[]        = "#7fbbb3";
 static const char *colors[][3]      = {
 	/*                   fg         bg         border   */
 	[SchemeNorm]     = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]      = { col_dark,  col_cyan,  col_cyan  },
 	[SchemeOcc]      = { col_gray4, col_gray1, col_gray2 }, /* tags with windows */
 	[SchemeEmpty]    = { col_gray5, col_gray1, col_gray2 }, /* empty tags */
-	/* status text colours, selected by the bytes \x01, \x02, ... in the status */
-	[SchemeStatus]   = { col_gray6, col_gray1, col_gray2 }, /* \x01 brackets and labels */
-	[SchemeStatus+1] = { col_gray4, col_gray1, col_gray2 }, /* \x02 values */
-	[SchemeStatus+2] = { col_blue,  col_gray1, col_gray2 }, /* \x03 now playing */
 };
 
 /* tagging */
@@ -162,16 +156,10 @@ static const Key keys[] = {
 };
 
 /* button definitions */
-/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkStatusVol, ClkStatusMusic, ClkWinTitle, ClkClientWin, or ClkRootWin */
+/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
-	{ ClkStatusVol,         0,              Button4,        spawn,          VOLUP },
-	{ ClkStatusVol,         0,              Button5,        spawn,          VOLDOWN },
-	{ ClkStatusVol,         0,              Button2,        spawn,          VOLMUTE },
-	{ ClkStatusMusic,       0,              Button1,        spawn,          SHCMD("$HOME/.local/bin/mpris previous" BARREFRESH) },
-	{ ClkStatusMusic,       0,              Button2,        spawn,          SHCMD("$HOME/.local/bin/mpris play-pause" BARREFRESH) },
-	{ ClkStatusMusic,       0,              Button3,        spawn,          SHCMD("$HOME/.local/bin/mpris next" BARREFRESH) },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button4,        shiftview,      {.i = -1 } },
 	{ ClkClientWin,         MODKEY,         Button5,        shiftview,      {.i = +1 } },
