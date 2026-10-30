@@ -92,6 +92,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {.i = 1} }, /* restart */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_j,      zoom,           {0} },
+	{ MODKEY,                       XK_o,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_o,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_Up,     focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },

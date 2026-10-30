@@ -70,6 +70,7 @@ Put wallpapers in `~/Documents/Wallpapers`.
 | Super+Shift+Left/Right | resize master area |
 | Super+Shift+Up/Down | resize window height |
 | Super+j | swap with master |
+| Super+o / Super+Shift+o | more / fewer windows in master |
 | Super+1..9 | view tag |
 | Super+Shift+1..9 | move window to tag |
 | Print | screenshot region to clipboard |
