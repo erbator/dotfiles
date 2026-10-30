@@ -92,7 +92,7 @@ struct Client {
 	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
 	int bw, oldbw;
 	unsigned int tags;
-	int isfixed, iscentered, isfloating, noborder, isurgent, neverfocus, oldstate, isfullscreen;
+	int isfixed, iscentered, isfloating, noborder, isurgent, neverfocus, oldstate, isfullscreen, resizehints;
 	Client *next;
 	Client *snext;
 	Monitor *mon;
@@ -145,6 +145,7 @@ typedef struct {
 	int isfloating;
 	int noborder;
 	int monitor;
+	int resizehints;
 } Rule;
 
 /* function declarations */
@@ -328,6 +329,7 @@ applyrules(Client *c)
 			c->iscentered = r->iscentered;
 			c->isfloating = r->isfloating;
 			c->noborder = r->noborder;
+			c->resizehints = r->resizehints;
 			c->tags |= r->tags;
 			for (m = mons; m && m->num != r->monitor; m = m->next);
 			if (m)
@@ -373,7 +375,7 @@ applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact)
 		*h = bh;
 	if (*w < bh)
 		*w = bh;
-	if (resizehints || c->isfloating || !c->mon->lt[c->mon->sellt]->arrange) {
+	if (c->resizehints || c->isfloating || !c->mon->lt[c->mon->sellt]->arrange) {
 		if (!c->hintsvalid)
 			updatesizehints(c);
 		/* see last two sentences in ICCCM 4.1.2.3 */
@@ -1130,6 +1132,7 @@ manage(Window w, XWindowAttributes *wa)
 	c->h = c->oldh = wa->height;
 	c->oldbw = wa->border_width;
 	c->cfact = 1.0;
+	c->resizehints = resizehints;
 
 	updatetitle(c);
 	if (XGetTransientForHint(dpy, w, &trans) && (t = wintoclient(trans))) {
