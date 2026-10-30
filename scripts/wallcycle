@@ -1,0 +1,15 @@
+#!/bin/sh
+# cycle to the next wallpaper in ~/Documents/Wallpapers; "restore" reapplies the current one
+dir=$HOME/Documents/Wallpapers
+cur=$HOME/.cache/wallpaper
+
+if [ "$1" != restore ] || [ ! -e "$cur" ]; then
+	last=$(readlink "$cur")
+	next=$(find "$dir" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) | sort \
+		| awk -v last="$last" 'NR == 1 { first = $0 } found { print; done = 1; exit } $0 == last { found = 1 }
+			END { if (!done) print first }')
+	[ -n "$next" ] || exit 1
+	ln -sf "$next" "$cur"
+fi
+
+xwallpaper --zoom "$cur"

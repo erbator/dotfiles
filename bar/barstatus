@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Prints the bar status once a second. The bytes \x01-\x03 pick the colour
+# (label, value, now playing) in the patched dwm bar.
+# usage: barstatus          print lines to stdout
+#        barstatus --xroot  set the X root window name (dwm)
+
+export LC_ALL=C
+l=$'\x01' v=$'\x02' p=$'\x03'
+
+status() {
+    local mem vol song
+    mem=$(awk '/^MemTotal:/{t=$2} /^MemAvailable:/{a=$2} END{printf "%.1f", (t-a)*100/t}' /proc/meminfo)
+    if [ "$(pactl get-sink-mute @DEFAULT_SINK@ 2>/dev/null)" = "Mute: yes" ]; then
+        vol=muted
+    else
+        vol=$(pactl get-sink-volume @DEFAULT_SINK@ 2>/dev/null | grep -o '[0-9]*%' | head -1)
+    fi
+
+    song=$(~/.local/bin/mpris now)
+
+    printf '%s' "$l[Mem: $v$mem%$l] [Vol: $v${vol:-n/a}$l]"
+    [ -n "$song" ] && printf '%s' " [$p$song$l]"
+    printf '%s\n' " [$v$(date '+%d/%b/%Y %-I:%M:%S %p')$l]"
+}
+
+# SIGUSR1 (sent by dwm's volume binds) cuts the sleep short to redraw at once.
+trap : USR1
+echo $$ > "$XDG_RUNTIME_DIR/barstatus.pid"
+
+while :; do
+    if [ "$1" = --xroot ]; then
+        xprop -root -set WM_NAME "$(status)" || exit
+    else
+        status || exit
+    fi
+    sleep 1 & wait $!
+done

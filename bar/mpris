@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Minimal MPRIS client over D-Bus (stands in for playerctl).
+# usage: mpris now                       print "title - artist" of the playing player
+#        mpris play-pause|next|previous  control the player
+
+path=/org/mpris/MediaPlayer2
+iface=org.mpris.MediaPlayer2.Player
+
+players() {
+    busctl --user list --no-legend 2>/dev/null | awk '$1 ~ /^org\.mpris\.MediaPlayer2\./ { print $1 }'
+}
+
+status() {
+    busctl --user get-property "$1" $path $iface PlaybackStatus 2>/dev/null | sed 's/^s "\(.*\)"$/\1/'
+}
+
+# The playing player if there is one, else the first one found.
+pick() {
+    local p first=
+    for p in $(players); do
+        [ "$(status "$p")" = Playing ] && { echo "$p"; return; }
+        : "${first:=$p}"
+    done
+    [ -n "$first" ] && echo "$first"
+}
+
+case $1 in
+now)
+    for p in $(players); do
+        [ "$(status "$p")" = Playing ] || continue
+        busctl --user --json=short get-property "$p" $path $iface Metadata 2>/dev/null |
+            python3 -Ic 'import json, sys
+m = json.load(sys.stdin)["data"]
+title = m.get("xesam:title", {}).get("data", "")
+artist = ", ".join(m.get("xesam:artist", {}).get("data", []))
+# fullwidth forms （Ａ！） -> ASCII (A!), they never line up with Latin text
+fw = {c: c - 0xfee0 for c in range(0xff01, 0xff5f)}
+fw[0x3000] = 0x20
+print(" - ".join(s for s in (title, artist) if s).translate(fw))'
+        exit
+    done
+    exit ;;
+play-pause) method=PlayPause ;;
+next) method=Next ;;
+previous) method=Previous ;;
+*) echo "usage: mpris now|play-pause|next|previous" >&2; exit 1 ;;
+esac
+
+p=$(pick) && [ -n "$p" ] && busctl --user call "$p" $path $iface "$method"

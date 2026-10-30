@@ -1,0 +1,7 @@
+#!/bin/sh
+# region to clipboard
+tmp=$(mktemp --suffix=.png)
+maim -s -u "$tmp" \
+        && xclip -selection clipboard -t image/png -i "$tmp"
+
+rm -f "$tmp"

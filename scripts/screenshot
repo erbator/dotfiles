@@ -1,0 +1,7 @@
+#!/bin/sh
+# region into satty
+tmp=$(mktemp --suffix=.png)
+maim -s -u "$tmp" \
+        && satty --filename "$tmp"
+
+rm -f "$tmp"
