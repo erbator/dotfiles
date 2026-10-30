@@ -46,7 +46,6 @@ static const Rule rules[] = {
 	 */
 	/* class                  instance                  title  tags mask  iscentered  isfloating  noborder  monitor */
 	{ "Gimp",                 NULL,                     NULL,  0,         0,          1,          0,        -1 },
-	{ "com.mojang.minecraft", NULL,                     NULL,  0,         0,          0,          1,        -1 },
 	{ NULL,                   "pavucontrol",            NULL,  0,         1,          1,          0,        -1 },
 	{ NULL,                   "xdg-desktop-portal-gtk", NULL,  0,         1,          1,          0,        -1 },
 	{ NULL,                   "satty",                  NULL,  0,         1,          1,          0,        -1 },
