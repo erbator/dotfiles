@@ -24,7 +24,7 @@ cp xinitrc ~/.xinitrc
 cp Xresources ~/.Xresources
 ```
 
-Then log in on a TTY and run `startx`.
+run `startx`.
 
 Wallpapers go in `~/Documents/Wallpapers`, screenshots are saved to `~/Documents/Screen`.
 
@@ -50,9 +50,9 @@ Wallpapers go in `~/Documents/Wallpapers`, screenshots are saved to `~/Documents
 | Super+Shift+r | restart dwm |
 | Super+Shift+x | quit dwm |
 
-There are no mouse bindings.
+There are no mouse bindings. Mouse is bloatware, if you cant do it on a kb dont't do it.
 
-## Patches
+## Patches (Little overpatched, but goes smooth atleast.)
 
 dwm: restartsig, preserveonrestart, vanitygaps, center, cfacts, fixborders,
 clientresizehints, status2d, bar-height-spacing, borderrule.
