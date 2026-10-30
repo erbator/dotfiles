@@ -9,7 +9,7 @@ On Arch:
 ```sh
 sudo pacman -S --needed git base-devel libx11 libxft libxinerama \
 	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse \
-	alacritty picom xwallpaper maim xclip nsxiv thunar mpv \
+	alacritty xwallpaper maim xclip nsxiv thunar mpv \
 	ttf-dejavu ttf-gohu-nerd
 
 git clone https://github.com/erbator/dotfiles
