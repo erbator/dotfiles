@@ -4,7 +4,6 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 12;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 12;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 16;       /* horiz outer gap between windows and screen edge */
@@ -52,7 +51,6 @@ static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] 
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
-static const int refreshrate = 60;   /* refresh rate (per second) for client move/resize */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -83,26 +81,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_dark, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
-
-/* view the next/previous tag that has windows on it */
-static void
-shiftview(const Arg *arg)
-{
-	Client *c;
-	unsigned int occ = 0, cur = selmon->tagset[selmon->seltags];
-	int i, n = LENGTH(tags);
-	Arg a;
-
-	for (c = selmon->clients; c; c = c->next)
-		occ |= c->tags;
-	for (i = 1; i < n; i++) {
-		a.ui = (arg->i > 0 ? cur << i | cur >> (n - i) : cur >> i | cur << (n - i)) & TAGMASK;
-		if (a.ui & occ) {
-			view(&a);
-			return;
-		}
-	}
-}
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -153,20 +131,4 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioPrev,         spawn, SHCMD("$HOME/.local/bin/mpris previous") },
 	{ 0,      XK_Print,            spawn, SHCMD("$HOME/.local/bin/qscreen") },     /* region to clipboard */
 	{ MODKEY, XK_Print,            spawn, SHCMD("$HOME/.local/bin/screenshot") },  /* region into satty */
-};
-
-/* button definitions */
-/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static const Button buttons[] = {
-	/* click                event mask      button          function        argument */
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button4,        shiftview,      {.i = -1 } },
-	{ ClkClientWin,         MODKEY,         Button5,        shiftview,      {.i = +1 } },
-	{ ClkRootWin,           MODKEY,         Button4,        shiftview,      {.i = -1 } },
-	{ ClkRootWin,           MODKEY,         Button5,        shiftview,      {.i = +1 } },
-	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
