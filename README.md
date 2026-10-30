@@ -19,7 +19,7 @@ Xresources  nsxiv colors
 sudo pacman -S --needed base-devel libx11 libxft libxinerama \
 	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse python \
 	alacritty picom xwallpaper maim xclip satty nsxiv thunar \
-	ttf-dejavu ttf-gohu-nerd ttf-jetbrains-mono-nerd
+	ttf-dejavu ttf-gohu-nerd
 
 sudo make -C dwm install
 sudo make -C dmenu install
