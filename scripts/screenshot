@@ -1,7 +1,5 @@
 #!/bin/sh
-# region into satty
-tmp=$(mktemp --suffix=.png)
-maim -s -u "$tmp" \
-        && satty --filename "$tmp"
-
-rm -f "$tmp"
+# region to ~/Documents/Screen, also copied to the clipboard
+f="$HOME/Documents/Screen/screenshot-$(date +%Y%m%d-%H%M%S).png"
+maim -s -u "$f" \
+        && xclip -selection clipboard -t image/png -i "$f"

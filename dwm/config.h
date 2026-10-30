@@ -41,7 +41,6 @@ static const Rule rules[] = {
 	{ "Gimp",  NULL,                      NULL,  0,         0,          1,          -1,      0,           -1 },
 	{ NULL,    "pavucontrol",             NULL,  0,         1,          1,          -1,      0,           -1 },
 	{ NULL,    "xdg-desktop-portal-gtk",  NULL,  0,         1,          1,          -1,      0,           -1 },
-	{ NULL,    "satty",                   NULL,  0,         1,          1,          -1,      0,           -1 },
 	{ NULL,    "nsxiv",                   NULL,  0,         1,          1,          -1,      0,           -1 },
 	{ "mpv",   NULL,                      NULL,  0,         0,          0,          -1,      1,           -1 },
 };
@@ -130,5 +129,5 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioPlay,         spawn, SHCMD("$HOME/.local/bin/mpris play-pause") },
 	{ 0, XF86XK_AudioPrev,         spawn, SHCMD("$HOME/.local/bin/mpris previous") },
 	{ 0,      XK_Print,            spawn, SHCMD("$HOME/.local/bin/qscreen") },     /* region to clipboard */
-	{ MODKEY, XK_Print,            spawn, SHCMD("$HOME/.local/bin/screenshot") },  /* region into satty */
+	{ MODKEY, XK_Print,            spawn, SHCMD("$HOME/.local/bin/screenshot") },  /* region to file and clipboard */
 };

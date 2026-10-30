@@ -1,7 +1,0 @@
-[general]
-output-filename = "~/Documents/Screen/screenshot-%Y%m%d-%H%M%S.png"
-copy-command = "xclip -selection clipboard -t image/png"
-
-[font]
-family = "DejaVu Sans Mono"
-style = "Bold"

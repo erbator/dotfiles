@@ -8,7 +8,6 @@ dmenu/      dmenu source with config.h
 bar/        status bar (barstatus) and media control (mpris)
 scripts/    screenshots, wallpaper cycling, webcam
 alacritty/  terminal config
-satty/      screenshot editor config
 xinitrc     session startup
 Xresources  nsxiv colors
 ```
@@ -20,7 +19,7 @@ Xresources  nsxiv colors
 ```sh
 sudo pacman -S --needed git base-devel libx11 libxft libxinerama \
 	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse \
-	alacritty picom xwallpaper maim xclip satty nsxiv thunar mpv \
+	alacritty picom xwallpaper maim xclip nsxiv thunar mpv \
 	ttf-dejavu ttf-gohu-nerd
 ```
 
@@ -41,10 +40,9 @@ sudo make -C dmenu install
 4. Copy the configs to where the programs read them:
 
 ```sh
-mkdir -p ~/.config/alacritty ~/.config/satty ~/.local/bin \
+mkdir -p ~/.config/alacritty ~/.local/bin \
 	~/Documents/Screen ~/Documents/Wallpapers
 cp alacritty/alacritty.toml ~/.config/alacritty/
-cp satty/config.toml ~/.config/satty/
 cp bar/* scripts/* ~/.local/bin/
 cp xinitrc ~/.xinitrc
 cp Xresources ~/.Xresources
@@ -75,7 +73,7 @@ Put wallpapers in `~/Documents/Wallpapers`.
 | Super+1..9 | view tag |
 | Super+Shift+1..9 | move window to tag |
 | Print | screenshot region to clipboard |
-| Super+Print | screenshot region into satty |
+| Super+Print | screenshot region to ~/Documents/Screen and clipboard |
 | Super+Shift+r | restart dwm |
 | Super+Shift+x | quit dwm |
 
