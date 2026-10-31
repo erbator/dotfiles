@@ -1,0 +1,13 @@
+
+[Default Applications]
+image/bmp=nsxiv.desktop
+image/gif=nsxiv.desktop
+image/jpeg=nsxiv.desktop
+image/jpg=nsxiv.desktop
+image/png=nsxiv.desktop
+image/tiff=nsxiv.desktop
+image/webp=nsxiv.desktop
+image/heic=nsxiv.desktop
+image/avif=nsxiv.desktop
+image/jxl=nsxiv.desktop
+image/svg+xml=nsxiv.desktop
