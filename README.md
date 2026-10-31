@@ -10,7 +10,7 @@ On Arch:
 sudo pacman -S --needed git base-devel libx11 libxft libxinerama \
 	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse \
 	alacritty xwallpaper maim xclip nsxiv thunar mpv \
-	ttf-dejavu ttf-gohu-nerd noto-fonts-cjk xorg-xrandr \
+	ttf-dejavu ttf-martian-mono-nerd noto-fonts-cjk xorg-xrandr \
 	chromium kvantum papirus-icon-theme
 
 git clone https://github.com/erbator/dotfiles
