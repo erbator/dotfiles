@@ -26,6 +26,9 @@ Wallpapers go in `~/Documents/Wallpapers`, screenshots are saved to `~/Documents
 | Super+Print | screenshot to file and clipboard |
 | Super+Shift+r | restart dwm |
 | Super+Shift+x | quit dwm |
+| Super+Numpad Enter | play/pause |
+| Super+Numpad + / - | volume up / down |
+| Super+Numpad 7 / 9 | previous / next track |
 | Shift+Up/Down, mouse wheel | scroll st |
 | Alt+Up/Down | scroll st 10 lines |
 | Alt+Shift+Up/Down | st font bigger/smaller |

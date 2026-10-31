@@ -129,6 +129,12 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioPause,        spawn, SHCMD("$HOME/.local/bin/mpris play-pause") },
 	{ 0, XF86XK_AudioPlay,         spawn, SHCMD("$HOME/.local/bin/mpris play-pause") },
 	{ 0, XF86XK_AudioPrev,         spawn, SHCMD("$HOME/.local/bin/mpris previous") },
+	/* numpad; dwm reads the NumLock-off keysym, so 7 is KP_Home and 9 is KP_Prior */
+	{ MODKEY, XK_KP_Enter,         spawn, SHCMD("$HOME/.local/bin/mpris play-pause") },
+	{ MODKEY, XK_KP_Add,           spawn, VOLUP },
+	{ MODKEY, XK_KP_Subtract,      spawn, VOLDOWN },
+	{ MODKEY, XK_KP_Home,          spawn, SHCMD("$HOME/.local/bin/mpris previous") },
+	{ MODKEY, XK_KP_Prior,         spawn, SHCMD("$HOME/.local/bin/mpris next") },
 	{ 0,      XK_Print,            spawn, SHCMD("$HOME/.local/bin/qscreen") },     /* region to clipboard */
 	{ MODKEY, XK_Print,            spawn, SHCMD("$HOME/.local/bin/screenshot") },  /* region to file and clipboard */
 };
