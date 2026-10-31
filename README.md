@@ -2,32 +2,6 @@
 
 My dwm setup as I run it: 4K at 240Hz, 120 DPI.
 
-## Install
-
-On Arch:
-
-```sh
-sudo pacman -S --needed git base-devel libx11 libxft libxinerama \
-	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse \
-	xwallpaper maim xclip nsxiv thunar mpv \
-	ttf-dejavu ttf-martian-mono-nerd noto-fonts-cjk xorg-xrandr \
-	chromium kvantum papirus-icon-theme
-
-git clone https://github.com/erbator/dotfiles
-cd dotfiles
-sudo make -C dwm install
-sudo make -C dmenu install
-sudo make -C st install
-
-mkdir -p ~/.local/bin ~/Documents/Screen ~/Documents/Wallpapers
-cp -r fontconfig gtk-3.0 xdg-desktop-portal mimeapps.list chromium-flags.conf ~/.config/
-cp bar/* scripts/* ~/.local/bin/
-cp xinitrc ~/.xinitrc
-cp Xresources ~/.Xresources
-```
-
-run `startx`.
-
 Wallpapers go in `~/Documents/Wallpapers`, screenshots are saved to `~/Documents/Screen`.
 
 ## Keys
