@@ -1,7 +1,6 @@
 # dotfiles
 
 My dwm setup as I run it: 4K at 240Hz, 120 DPI.
-For a 1080p 60Hz version, use the universal branch.
 
 ## Install
 
