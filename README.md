@@ -54,6 +54,7 @@ Wallpapers go in `~/Documents/Wallpapers`, screenshots are saved to `~/Documents
 | Super+Shift+x | quit dwm |
 | Shift+Up/Down, mouse wheel | scroll st |
 | Alt+Up/Down | scroll st 10 lines |
+| Alt+Shift+Up/Down | st font bigger/smaller |
 
 dwm has no mouse bindings. Mouse is bloatware, if you cant do it on a kb dont't do it.
 
