@@ -43,6 +43,7 @@ Wallpapers go in `~/Documents/Wallpapers`, screenshots are saved to `~/Documents
 | Super+Shift+Up/Down | resize window height |
 | Super+j | swap with master |
 | Super+o / Super+Shift+o | more / fewer windows in master |
+| Super+Shift+Space | toggle floating |
 | Super+1..9 | view tag |
 | Super+Shift+1..9 | move window to tag |
 | Print | screenshot to clipboard |
