@@ -7,6 +7,7 @@ Running
 -------
     Super+Return                 terminal (st)
     Super+d                      dmenu
+    Super+b                      hide / show bar
     Super+e                      file manager
     Super+w                      next wallpaper
     Super+F11                    webcam
