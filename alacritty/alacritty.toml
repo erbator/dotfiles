@@ -17,3 +17,6 @@ padding = { x = 14, y = 14 }
 
 [selection]
 save_to_clipboard = true
+
+[debug]
+log_level = "Error"
