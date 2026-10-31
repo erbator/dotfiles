@@ -101,7 +101,6 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Right,  setmfact,       {.f = +0.02} },
 	{ MODKEY|ShiftMask,             XK_Up,     setcfact,       {.f = -0.10} },
 	{ MODKEY|ShiftMask,             XK_Down,   setcfact,       {.f = +0.10} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
