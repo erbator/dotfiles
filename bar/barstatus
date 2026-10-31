@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Prints the bar status once a second. ^c#rrggbb^ sets the colour (dwm status2d).
 # usage: barstatus          print lines to stdout
 #        barstatus --xroot  set the X root window name (dwm)
@@ -7,7 +7,6 @@ export LC_ALL=C
 l='^c#999999^' v='^c#eeeeee^' p='^c#7fbbb3^'
 
 status() {
-    local mem vol song
     mem=$(awk '/^MemTotal:/{t=$2} /^MemAvailable:/{a=$2} END{printf "%.1f", (t-a)*100/t}' /proc/meminfo)
     if [ "$(pactl get-sink-mute @DEFAULT_SINK@ 2>/dev/null)" = "Mute: yes" ]; then
         vol=muted
@@ -15,8 +14,7 @@ status() {
         vol=$(pactl get-sink-volume @DEFAULT_SINK@ 2>/dev/null | grep -o '[0-9]*%' | head -1)
     fi
 
-    song=$(~/.local/bin/mpris now)
-    song=${song//^/} # a ^ would start a status2d code
+    song=$(~/.local/bin/mpris now | tr -d '^') # a ^ would start a status2d code
 
     printf '%s' "$l[Mem: $v$mem%$l] [Vol: $v${vol:-n/a}$l]"
     [ -n "$song" ] && printf '%s' " [$p$song$l]"

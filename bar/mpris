@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Minimal MPRIS client over D-Bus (stands in for playerctl).
 # usage: mpris now                       print "title - artist" of the playing player
 #        mpris play-pause|next|previous  control the player
@@ -16,7 +16,7 @@ status() {
 
 # The playing player if there is one, else the first one found.
 pick() {
-    local p first=
+    first=
     for p in $(players); do
         [ "$(status "$p")" = Playing ] && { echo "$p"; return; }
         : "${first:=$p}"
@@ -24,20 +24,21 @@ pick() {
     [ -n "$first" ] && echo "$first"
 }
 
-# Print the first string of a Metadata field from busctl's text output,
-# e.g. "xesam:title" s "Song", undoing busctl's \xNN and \" escapes.
+# Print the first string of a Metadata field from busctl's JSON output,
+# e.g. "xesam:title":{"type":"s","data":"Song"}, undoing JSON's \ escapes.
 field() {
-    printf '%b' "$(printf '%s' "$meta" |
-        sed -n 's/.*"'"$1"'" '"$2"' "\(\([^"\\]\|\\.\)*\)".*/\1/p')" | sed 's/\\"/"/g'
+    printf '%s' "$meta" |
+        sed -nE 's/.*"'"$1"'":\{"type":"'"$2"'","data":'"$3"'"(([^"\\]|\\.)*)".*/\1/p' |
+        sed 's/\\\(.\)/\1/g'
 }
 
 case $1 in
 now)
     for p in $(players); do
         [ "$(status "$p")" = Playing ] || continue
-        meta=$(busctl --user get-property "$p" $path $iface Metadata 2>/dev/null)
+        meta=$(busctl --user --json=short get-property "$p" $path $iface Metadata 2>/dev/null)
         title=$(field xesam:title s)
-        artist=$(field xesam:artist 'as [0-9]*')
+        artist=$(field xesam:artist as '\[')
         printf '%s\n' "$title${title:+${artist:+ - }}$artist" |
             LC_ALL=C.UTF-8 sed 'y/！＂＃＄％＆＇（）＊＋，－．／０１２３４５６７８９：；＜＝＞？＠ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ［＼］＾＿｀ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ｛｜｝～　/!"#$%&'\''()*+,-.\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ /'
         exit
