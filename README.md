@@ -1,6 +1,7 @@
 # dotfiles
 
-My dwm setup: dwm, dmenu, a status bar and the scripts they use.
+My dwm setup as I run it: 4K at 240Hz, 120 DPI.
+For a 1080p 60Hz version, use the 1080p branch.
 
 ## Install
 
@@ -10,7 +11,8 @@ On Arch:
 sudo pacman -S --needed git base-devel libx11 libxft libxinerama \
 	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse \
 	alacritty xwallpaper maim xclip nsxiv thunar mpv \
-	ttf-dejavu ttf-gohu-nerd
+	ttf-dejavu ttf-gohu-nerd noto-fonts-cjk xorg-xrandr \
+	chromium kvantum papirus-icon-theme
 
 git clone https://github.com/erbator/dotfiles
 cd dotfiles
@@ -18,7 +20,9 @@ sudo make -C dwm install
 sudo make -C dmenu install
 
 mkdir -p ~/.config/alacritty ~/.local/bin ~/Documents/Screen ~/Documents/Wallpapers
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 cp alacritty/alacritty.toml ~/.config/alacritty/
+cp -r fontconfig gtk-3.0 xdg-desktop-portal mimeapps.list chromium-flags.conf ~/.config/
 cp bar/* scripts/* ~/.local/bin/
 cp xinitrc ~/.xinitrc
 cp Xresources ~/.Xresources

@@ -1,7 +1,7 @@
-Xft.dpi: 96
+Xft.dpi: 120
 Nsxiv.window.background: #272e33
 Nsxiv.window.foreground: #d3c6aa
 Nsxiv.bar.background:    #272e33
 Nsxiv.bar.foreground:    #d3c6aa
 Nsxiv.mark.foreground:   #a7c080
-Nsxiv.bar.font:          DejaVu Sans Mono:size=10
+Nsxiv.bar.font:          DejaVu Sans Mono:size=14

@@ -12,8 +12,8 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 8;        /* 2 is the default spacing around the bar's font */
-static const char *fonts[]          = { "DejaVu Sans Mono:size=10" };
-static const char dmenufont[]       = "DejaVu Sans Mono:size=10";
+static const char *fonts[]          = { "DejaVu Sans Mono:size=14" };
+static const char dmenufont[]       = "DejaVu Sans Mono:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -37,12 +37,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class    instance                   title  tags mask  iscentered  isfloating  monitor  resizehints  border width */
-	{ "Gimp",  NULL,                      NULL,  0,         0,          1,          -1,      0,           -1 },
-	{ NULL,    "pavucontrol",             NULL,  0,         1,          1,          -1,      0,           -1 },
-	{ NULL,    "xdg-desktop-portal-gtk",  NULL,  0,         1,          1,          -1,      0,           -1 },
-	{ NULL,    "nsxiv",                   NULL,  0,         1,          1,          -1,      0,           -1 },
-	{ "mpv",   NULL,                      NULL,  0,         0,          0,          -1,      1,           -1 },
+	/* class                    instance                   title  tags mask  iscentered  isfloating  monitor  resizehints  border width */
+	{ "Gimp",                  NULL,                      NULL,  0,         0,          1,          -1,      0,           -1 },
+	{ "com.mojang.minecraft",  NULL,                      NULL,  0,         0,          0,          -1,      0,           0 },
+	{ NULL,                    "pavucontrol",             NULL,  0,         1,          1,          -1,      0,           -1 },
+	{ NULL,                    "xdg-desktop-portal-gtk",  NULL,  0,         1,          1,          -1,      0,           -1 },
+	{ NULL,                    "nsxiv",                   NULL,  0,         1,          1,          -1,      0,           -1 },
+	{ "mpv",                   NULL,                      NULL,  0,         0,          0,          -1,      1,           -1 },
 };
 
 /* layout(s) */
@@ -77,7 +78,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_dark, NULL };
+static const char *dmenucmd[] = { "/home/bator/.local/bin/dmenu_apps", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_dark, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 

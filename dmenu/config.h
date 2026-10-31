@@ -14,7 +14,7 @@ static const char *colors[SchemeLast][2] = {
 	[SchemeOut] = { "#000000", "#00ffff" },
 };
 /* -h option; minimum height of a menu line */
-static unsigned int lineheight = 25; /* same height as the dwm bar */
+static unsigned int lineheight = 36; /* same height as the dwm bar */
 static unsigned int min_lineheight = 8;
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 static unsigned int lines      = 0;
