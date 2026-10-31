@@ -52,12 +52,13 @@ Wallpapers go in `~/Documents/Wallpapers`, screenshots are saved to `~/Documents
 | Super+Print | screenshot to file and clipboard |
 | Super+Shift+r | restart dwm |
 | Super+Shift+x | quit dwm |
+| Shift+Up/Down, mouse wheel | scroll st |
 
-There are no mouse bindings. Mouse is bloatware, if you cant do it on a kb dont't do it.
+dwm has no mouse bindings. Mouse is bloatware, if you cant do it on a kb dont't do it.
 
 ## Patches (Little overpatched, but goes smooth atleast.)
 
 dwm: restartsig, preserveonrestart, vanitygaps, center, cfacts, fixborders,
 clientresizehints, status2d, bar-height-spacing, borderrule.
 dmenu: lineheight.
-st: clipboard.
+st: scrollback, scrollback-mouse, scrollback-mouse-altscreen, clipboard.
