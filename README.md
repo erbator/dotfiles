@@ -9,7 +9,7 @@ On Arch:
 ```sh
 sudo pacman -S --needed git base-devel libx11 libxft libxinerama \
 	xorg-server xorg-xinit xorg-xprop xorg-xrdb libpulse \
-	alacritty xwallpaper maim xclip nsxiv thunar mpv \
+	xwallpaper maim xclip nsxiv thunar mpv \
 	ttf-dejavu ttf-martian-mono-nerd noto-fonts-cjk xorg-xrandr \
 	chromium kvantum papirus-icon-theme
 
@@ -17,10 +17,9 @@ git clone https://github.com/erbator/dotfiles
 cd dotfiles
 sudo make -C dwm install
 sudo make -C dmenu install
+sudo make -C st install
 
-mkdir -p ~/.config/alacritty ~/.local/bin ~/Documents/Screen ~/Documents/Wallpapers
-git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
-cp alacritty/alacritty.toml ~/.config/alacritty/
+mkdir -p ~/.local/bin ~/Documents/Screen ~/Documents/Wallpapers
 cp -r fontconfig gtk-3.0 xdg-desktop-portal mimeapps.list chromium-flags.conf ~/.config/
 cp bar/* scripts/* ~/.local/bin/
 cp xinitrc ~/.xinitrc
@@ -35,7 +34,7 @@ Wallpapers go in `~/Documents/Wallpapers`, screenshots are saved to `~/Documents
 
 | Key | Action |
 |---|---|
-| Super+Return | terminal |
+| Super+Return | terminal (st) |
 | Super+d | dmenu |
 | Super+e | file manager |
 | Super+w | next wallpaper |
@@ -53,6 +52,7 @@ Wallpapers go in `~/Documents/Wallpapers`, screenshots are saved to `~/Documents
 | Super+Print | screenshot to file and clipboard |
 | Super+Shift+r | restart dwm |
 | Super+Shift+x | quit dwm |
+| Shift+PageUp/PageDown | scroll st |
 
 There are no mouse bindings. Mouse is bloatware, if you cant do it on a kb dont't do it.
 
@@ -61,3 +61,4 @@ There are no mouse bindings. Mouse is bloatware, if you cant do it on a kb dont'
 dwm: restartsig, preserveonrestart, vanitygaps, center, cfacts, fixborders,
 clientresizehints, status2d, bar-height-spacing, borderrule.
 dmenu: lineheight.
+st: scrollback, clipboard.

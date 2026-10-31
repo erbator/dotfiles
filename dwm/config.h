@@ -19,7 +19,7 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_gray5[]       = "#777777";
-static const char col_cyan[]        = "#7fbbb3"; /* everforest blue, as in alacritty */
+static const char col_cyan[]        = "#7fbbb3"; /* everforest blue, as in st */
 static const char col_dark[]        = "#272e33"; /* everforest bg, text on blue */
 static const char *colors[][3]      = {
 	/*                   fg         bg         border   */
@@ -77,7 +77,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "/home/bator/.local/bin/dmenu_apps", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_dark, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 
 static const Key keys[] = {
